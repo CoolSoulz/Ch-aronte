@@ -3,6 +3,12 @@ source scripts/resources.sh
 timedatectl
 loadkeys br-abnt2
 mkdir -p "tmp/.ansible-${USER}/tmp"
+if [ -d /sys/firmware/efi ]; then
+  firmware="UEFI"
+else
+  firmware="BIOS"
+fi
+echo "FIRMWARE=$firmware" >>./respostas.env
 
 sleep 1
 echo "Preparando particionamento..."
@@ -114,5 +120,3 @@ set +a
 
 # Chamada para o playbook de particionamento
 ansible-playbook -vvv ./main.yaml --tags particionamento
-chmod +x ./scripts/B-reflector.sh
-bash ./scripts/B-reflector.sh
