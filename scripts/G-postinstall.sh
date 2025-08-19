@@ -1,0 +1,4 @@
+#!/bin/bash
+set -a
+echo "Choose a DE/WM, current options: 1. KDE Plasma or 2. (1/2)"
+read choice
